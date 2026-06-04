@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://clkv05titcka7"]
+
+[ext_resource type="PackedScene" uid="uid://dfwkheqe7at0l" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c0h14krs0c25x" path="res://map.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cfai5g1o6qjci" path="res://swap_point.gd" id="3_h2yge"]
+
+[node name="main" type="Node2D" unique_id=1093375451]
+
+[node name="player" parent="." unique_id=1308078781 instance=ExtResource("1_ig7tw")]
+
+[node name="map" parent="." unique_id=1496183883 instance=ExtResource("2_0xm2m")]
+
+[node name="swap_point" type="Node2D" parent="." unique_id=996316466]
+position = Vector2(592, -13)
+script = ExtResource("3_h2yge")
+
+[connection signal="swap" from="player" to="swap_point" method="_on_player_swap"]
