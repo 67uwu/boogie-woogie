@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-signal swap
-@onready var target: Node2D = $"../swap_point"
+signal ability
+@onready var target: Node2D = $"../spider"
 
 # Physics Constants
 const SPEED = 300.0
@@ -12,17 +12,16 @@ const JUMP_GRAVITY = 800
 const FALL_GRAVITY = 1800
 const COYOTE_BUFFER = 150
 
-var can_swap: bool
-var swap_timer: float
+var mana: float  = 2
 var coyote_activated: bool = true
-
+var abilities
+var max_mana = 2
 
 func _physics_process(delta: float) -> void:
-	if(can_swap and Input.is_action_just_pressed("swap")):
-		can_swap = false
-		swap_timer = 1
+	if(mana == max_mana and Input.is_action_just_pressed("ability")):
+		mana = 0
 		var temp = target.global_position
-		swap.emit()
+		target.global_position = global_position
 		global_position = temp
 	# Add the gravity.
 	if not is_on_floor():
@@ -54,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = TOP_SPEED
 	elif(velocity.x < -TOP_SPEED):
 		velocity.x = -TOP_SPEED 
-	swap_timer -= delta
-	if(swap_timer <= 0):
-		can_swap = true
+	mana += delta
+	if mana > max_mana:
+		mana = max_mana
 	move_and_slide()

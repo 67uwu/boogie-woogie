@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://d4p5bwh2jdcm"]
+
+[ext_resource type="Script" uid="uid://jjs2h6ka7qab" path="res://spider.gd" id="1_qrebf"]
+[ext_resource type="Texture2D" uid="uid://b6sk33s3ref3x" path="res://spider.png" id="2_qrebf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
+size = Vector2(16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yt70"]
+atlas = ExtResource("2_qrebf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vivtl"]
+atlas = ExtResource("2_qrebf")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_binfs"]
+atlas = ExtResource("2_qrebf")
+region = Rect2(0, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wdmt"]
+atlas = ExtResource("2_qrebf")
+region = Rect2(0, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsryr"]
+atlas = ExtResource("2_qrebf")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01nvu"]
+atlas = ExtResource("2_qrebf")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwyhr"]
+atlas = ExtResource("2_qrebf")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s326f"]
+atlas = ExtResource("2_qrebf")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x2avr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yt70")
+}],
+"loop": true,
+"name": &"hanging",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_vivtl")
+}, {
+"duration": 2.8,
+"texture": SubResource("AtlasTexture_binfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wdmt")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsryr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01nvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwyhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s326f")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[node name="spider" type="CharacterBody2D" unique_id=1496043396]
+script = ExtResource("1_qrebf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=432245923]
+shape = SubResource("RectangleShape2D_7k104")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1958885550]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_x2avr")
+animation = &"move"
