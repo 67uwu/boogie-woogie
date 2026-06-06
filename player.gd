@@ -20,9 +20,9 @@ var max_mana = 2
 func _physics_process(delta: float) -> void:
 	if(mana == max_mana and Input.is_action_just_pressed("ability")):
 		mana = 0
-		var temp = target.global_position
-		target.global_position = global_position
-		global_position = temp
+		var temp = global_position
+		global_position = target.global_position
+		target.global_position = temp
 	# Add the gravity.
 	if not is_on_floor():
 		if velocity.y >= 0:

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://d4p5bwh2jdcm"]
 
 [ext_resource type="Script" uid="uid://jjs2h6ka7qab" path="res://spider.gd" id="1_qrebf"]
-[ext_resource type="Texture2D" uid="uid://b6sk33s3ref3x" path="res://spider.png" id="2_qrebf"]
+[ext_resource type="Texture2D" uid="uid://c3f4855pc8esk" path="res://assets/spider.png" id="2_qrebf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
-size = Vector2(16, 8)
+size = Vector2(16, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1yt70"]
 atlas = ExtResource("2_qrebf")
@@ -49,7 +49,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.5,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_vivtl")
 }, {
 "duration": 2.8,
@@ -84,9 +84,12 @@ animations = [{
 script = ExtResource("1_qrebf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=432245923]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_7k104")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1958885550]
-position = Vector2(0, -4)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1128590352]
+position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_x2avr")
 animation = &"move"
+frame = 1
+frame_progress = 0.44025594

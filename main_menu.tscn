@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cnekkk5fn6kg7"]
+
+[ext_resource type="Texture2D" uid="uid://dl6pacqbg4nve" path="res://assets/long_button.png" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://c7vueclyjxskt" path="res://main_menu.gd" id="1_fu7sn"]
+[ext_resource type="FontFile" uid="uid://dyeurxls0kkni" path="res://assets/dungeonmode/font/dungeon-mode.ttf" id="2_7vrkn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fu7sn"]
+font = ExtResource("2_7vrkn")
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
+font = ExtResource("2_7vrkn")
+font_size = 60
+
+[node name="Control" type="Control" unique_id=1802728671]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fu7sn")
+
+[node name="play_button" type="TextureButton" parent="." unique_id=1853152344]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06666667
+anchor_top = 0.23614815
+anchor_right = 0.28897226
+anchor_bottom = 0.3346544
+offset_left = 0.19999886
+offset_top = -0.02400589
+offset_right = 0.10397339
+offset_bottom = 0.14395142
+texture_normal = ExtResource("1_06t4h")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="play_button" unique_id=1686089670]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0390625
+anchor_top = 0.21875
+anchor_right = 0.9490313
+anchor_bottom = 0.79637504
+offset_right = 0.04798889
+offset_bottom = 0.03199768
+text = "Play"
+label_settings = SubResource("LabelSettings_fu7sn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="." unique_id=111314116]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5277778
+anchor_bottom = 0.08024691
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Roguelike i guess"
+label_settings = SubResource("LabelSettings_7vrkn")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="play_button" to="." method="_on_play_button_pressed"]
