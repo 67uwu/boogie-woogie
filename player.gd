@@ -11,6 +11,7 @@ const ACCEL = 18
 const JUMP_GRAVITY = 800
 const FALL_GRAVITY = 1800
 const COYOTE_BUFFER = 150
+@onready var START_LOCATION = global_position  
 
 var mana: float  = 2
 var coyote_activated: bool = true
@@ -57,3 +58,7 @@ func _physics_process(delta: float) -> void:
 	if mana > max_mana:
 		mana = max_mana
 	move_and_slide()
+
+
+func _on_map_place_player() -> void:
+	global_position = START_LOCATION# Replace with function body.

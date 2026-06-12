@@ -1,15 +1,21 @@
 [gd_scene format=3 uid="uid://clkv05titcka7"]
 
+[ext_resource type="Script" uid="uid://dne68apyph7i" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dfwkheqe7at0l" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c0h14krs0c25x" path="res://map.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://d4p5bwh2jdcm" path="res://spider.tscn" id="3_h2yge"]
 
 [node name="main" type="Node2D" unique_id=1093375451]
+script = ExtResource("1_1bvp3")
 
 [node name="player" parent="." unique_id=1308078781 instance=ExtResource("1_ig7tw")]
+position = Vector2(40, 32)
 
 [node name="map" parent="." unique_id=1496183883 instance=ExtResource("2_0xm2m")]
 
 [node name="spider" parent="." unique_id=1496043396 instance=ExtResource("3_h2yge")]
 position = Vector2(502, 108)
 collision_layer = 2
+
+[connection signal="gen_map" from="." to="map" method="_on_main_gen_map"]
+[connection signal="place_player" from="map" to="player" method="_on_map_place_player"]
