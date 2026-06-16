@@ -57,6 +57,14 @@ func _physics_process(delta: float) -> void:
 	mana += delta
 	if mana > max_mana:
 		mana = max_mana
+	if(Input.is_action_pressed("shift")):
+		collision_layer = 8
+		collision_mask = 8
+		if(not Input.is_action_pressed("down")):
+			velocity.y = -30
+	else:
+		collision_layer = 1
+		collision_mask = 1
 	move_and_slide()
 
 
