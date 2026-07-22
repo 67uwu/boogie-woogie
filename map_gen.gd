@@ -40,55 +40,71 @@ func empty_map():
 	pass
 
 func fill_grid():
-	var start_room = randi_range(0,3)
-	var current_room: Vector2i = Vector2i(start_room, 0)
-	room_grid[start_room][0] = 1
-	var direction = randi_range(1,4) #1,2:left 3,4:right 5:down
-	var finished:bool = false
-	var picked_room
-	while not finished:
-		print(direction)
-		picked_room = 2
-		if(direction == 1 or direction == 2):
-			if(current_room.x > 0):
-				current_room.x -= 1
-				direction = randi_range(1,5)
-			else:
-				picked_room = 3
-				direction = 5
-				current_room.y += 1
-		elif(direction == 3 or direction ==4):
-			if(current_room.x < 3):
-				current_room.x += 1
-				direction = randi_range(1,5)
-			else:
-				picked_room = 3
-				direction = 5
-				current_room.y +=1
-		elif(direction == 5):
-			if(current_room.y >= 3):
+	var current_room: Vector2i = Vector2i(randi_range(0,3), 0)
+	room_grid[current_room.x][current_room.y] = 1
+	var new_direction:int = randi_range(1,4) #1,2,3,4:stay on same floor 5:down
+	var picked_room: int
+	var last_room
+	while true:
+		last_room = current_room
+		print("dir:", new_direction)
+		#print("current_room", current_room)
+		if(new_direction == 5):
+			if(current_room.y == 3):
 				exit_room = current_room
-				finished = true
+				break
 			else:
-				picked_room = 3
-				current_room.y +=1
-				direction = randi_range(1,5)
+				picked_room = 5
+				room_grid[current_room.x][current_room.y] = 5
+				current_room.y += 1
+		else:
+			if(new_direction < 3):#head left
+				if(current_room.x == 0):
+					if(current_room.y == 3):
+						exit_room = current_room
+						break
+					else:
+						picked_room = 5
+						room_grid[current_room.x][current_room.y] = 3
+						current_room.y += 1
+				else:
+					picked_room = 2
+					current_room.x -= 1
+			else:
+				if(current_room.x == 3):
+					if(current_room.y == 3):
+						exit_room = current_room
+						break
+					else:
+						picked_room = 5
+						room_grid[current_room.x][current_room.y] = 3
+						current_room.y += 1
+				else:
+					picked_room = 2
+					current_room.x += 1 
 		current_room.x = clamp(current_room.x, 0, 3)
 		current_room.y = clamp(current_room.y, 0, 3)
-		if(not room_grid[current_room.x][current_room.y] == 1):
+		if(room_grid[current_room.x][current_room.y] == 6):
 			room_grid[current_room.x][current_room.y] = picked_room
-
+		else:
+			current_room = last_room
+		new_direction = randi_range(1,5)
 	fix_grid()
 	make_map()
 
 func fix_grid():
 	for x in range(0,4):
-		for y in range(0,4):
+		for y in range(1,4):
 			if(room_grid[x][y] == 2 and (room_grid[x][y-1] == 3  or room_grid[x][y-1] == 4)):
 				room_grid[x][y] == 5
 			elif(room_grid[x][y] == 3 and (room_grid[x][y-1] == 3 or room_grid[x][y-1] == 4)):
 				room_grid[x][y] = 4
-				
+	for x in range(0,4):
+		for y in range(0,3):
+			if(room_grid[x][y] == 2 and (room_grid[x][y+1] == 4 or room_grid[x][y+1] == 5)):
+				room_grid[x][y] == 3
+			elif(room_grid[x][y] == 5 and(room_grid[x][y+1] == 4 or room_grid[x][y+1] == 5)):
+				room_grid[x][y] == 4
 
 func make_map():
 	for x in range(0,4):
