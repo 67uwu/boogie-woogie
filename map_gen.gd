@@ -55,7 +55,7 @@ func fill_grid():
 				break
 			else:
 				picked_room = 5
-				room_grid[current_room.x][current_room.y] = 5
+				room_grid[current_room.x][current_room.y] = 3
 				current_room.y += 1
 		else:
 			if(new_direction < 3):#head left
